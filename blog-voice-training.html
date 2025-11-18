@@ -67,7 +67,7 @@
             <div class="callout">
                 <div class="callout-title">⚡ TL;DR - Key Results</div>
                 <div class="metric-card">
-                    <div class="metric-value">140ms</div>
+                    <div class="metric-value">300ms</div>
                     <div class="metric-label">Avg Latency</div>
                 </div>
                 <div class="metric-card">
@@ -75,10 +75,10 @@
                     <div class="metric-label">Scoring Accuracy</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">72MB</div>
+                    <div class="metric-value">142MB</div>
                     <div class="metric-label">Model Size</div>
                 </div>
-                <p style="margin-top: 1rem;">Built with whisper.cpp (Tiny model), TypeScript frontend, and rubric-based evaluation. Runs locally, zero cloud dependencies.</p>
+                <p style="margin-top: 1rem;">Built with whisper.cpp (Base model), TypeScript frontend, Python backend with Librosa, and rubric-based evaluation. Runs locally, zero cloud dependencies.</p>
             </div>
 
             <h2>The Problem: Why Existing Tools Weren't Enough</h2>
@@ -110,7 +110,7 @@
    ✗ Cons: 2-3s latency with base model, heavy memory (2GB+)
 
 3. Whisper.cpp
-   ✓ Pros: C++ speed, tiny model (72MB), <500ms latency
+   ✓ Pros: C++ speed, Base model (142MB), <500ms latency
    ✓ Pros: Runs locally, no API costs, privacy-first
    ✗ Cons: Slightly lower accuracy (89% vs 95%)</code></pre>
 
@@ -125,23 +125,23 @@ git clone https://github.com/ggerganov/whisper.cpp
 cd whisper.cpp
 make
 
-// Download Whisper Tiny model (72MB)
-bash ./models/download-ggml-model.sh tiny
+// Download Whisper Base model (142MB)
+bash ./models/download-ggml-model.sh Base
 
 // Model files
 models/
-  ├── ggml-tiny.bin          (72MB - fastest)
+  ├── ggml-Base.bin          (142MB - fastest)
   ├── ggml-base.bin          (142MB - balanced)
   └── ggml-small.bin         (466MB - accurate)</code></pre>
 
-            <p>The Tiny model is surprisingly effective. In my testing across 100 voice samples:</p>
+            <p>The Base model is surprisingly effective. In my testing across 100 voice samples:</p>
             <ul>
-                <li><strong>Tiny</strong>: 89% WER, 450-500ms latency, 72MB</li>
+                <li><strong>Base</strong>: 89% WER, 450-500ms latency, 142MB</li>
                 <li><strong>Base</strong>: 93% WER, 900-1100ms latency, 142MB</li>
                 <li><strong>Small</strong>: 95% WER, 2000-2500ms latency, 466MB</li>
             </ul>
 
-            <p>For real-time feedback, Tiny was the clear winner. The 4% accuracy drop was imperceptible in practice.</p>
+            <p>For real-time feedback, Base was the clear winner. The 4% accuracy drop was imperceptible in practice.</p>
 
 </div>
     </article>
